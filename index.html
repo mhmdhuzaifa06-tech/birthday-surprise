@@ -1,1 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Happy Birthday Kanwal 🎂❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #fff0f6, #fce4ec, #f8bbd0);
+            color: #4a3040;
+            overflow-x: hidden;
+        }
+
+        /* --------------------
+           SECRET SCREEN
+        -------------------- */
+
+        #lockScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            background:
+                radial-gradient(circle at top left, #ffd6e7, transparent 40%),
+                radial-gradient(circle at bottom right, #e8c7ff, transparent 40%),
+                #fff5fa;
+        }
+
+        .lock-card {
+            width: 100%;
+            max-width: 430px;
+            padding: 45px 30px;
+            text-align: center;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.85);
+            box-shadow: 0 20px 60px rgba(150, 70, 110, 0.18);
+            backdrop-filter: blur(15px);
+            animation: floatCard 3s ease-in-out infinite;
+        }
+
+        .lock-card .heart {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .lock-card h1 {
+            color: #c2185b;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .lock-card p {
+            line-height: 1.7;
+            color: #76566a;
+            margin-bottom: 25px;
+        }
+
+        .question {
+            font-weight: 600;
+            color: #ad1457;
+            margin-bottom: 12px;
+        }
+
+        #answer {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #f3b6cc;
+            border-radius: 15px;
+            outline: none;
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        #answer:focus {
+            border-color: #c2185b;
+        }
+
+        .open-btn {
+            width: 100%;
+            border: none;
+            padding: 15px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #ec407a, #ad1457);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(194, 24, 91, 0.25);
+            transition: 0.3s;
+        }
+
+        .open-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        #wrongAnswer {
+            color: #d32f2f;
+            margin-top: 12px;
+            display: none;
+        }
+
+        /* --------------------
+           MAIN WEBSITE
+        -------------------- */
+
+        #mainWebsite {
+            display: none;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1050px;
+            margin: auto;
+            text-align: center;
+        }
+
+        /* HERO */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 20% 20%, #ffd6e7, transparent 30%),
+                radial-gradient(circle at 80% 80%, #e7c6ff, transparent 30%),
+                linear-gradient(135deg, #fff5fa, #fde7f0);
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 30px;
+            animation: floating 5s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .heart1 {
+            top: 15%;
+            left: 10%;
+        }
+
+        .heart2 {
+            top: 30%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+        .heart3 {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .hero h2 {
+            font-size: clamp(18px, 4vw, 25px);
+            color: #ad1457;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(50px, 12vw, 100px);
+            color: #c2185b;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(18px, 4vw, 24px);
+            color: #76566a;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        .scroll-btn {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            background: #c2185b;
+            transition: 0.3s;
+        }
+
+        .scroll-btn:hover {
+            transform: translateY(-4px);
+        }
+
+        /* COUNTDOWN */
+
+        .countdown-section {
+            background: white;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            color: #c2185b;
+            font-size: clamp(34px, 7vw, 55px);
+            margin-bottom: 15px;
+        }
+
+        .section-text {
+            max-width: 700px;
+            margin: 0 auto 35px;
+            line-height: 1.8;
+            color: #76566a;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .time-box {
+            width: 100px;
+            padding: 20px 10px;
+            border-radius: 20px;
+            background: #fff0f6;
+            box-shadow: 0 8px 25px rgba(194, 24, 91, 0.10);
+        }
+
+        .time-box strong {
+            display: block;
+            font-size: 35px;
+            color: #c2185b;
+        }
+
+        .time-box span {
+            font-size: 13px;
+            color: #76566a;
+        }
+
+        /* MESSAGE */
+
+        .message-section {
+            background: linear-gradient(135deg, #fff0f6, #f8e4ff);
+        }
+
+        .letter {
+            max-width: 750px;
+            margin: auto;
+            padding: 40px 30px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.85);
+            box-shadow: 0 20px 60px rgba(120,50,100,0.12);
+            line-height: 2;
+            font-size: 18px;
+        }
+
+        .letter p {
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            margin-top: 30px;
+            color: #c2185b;
+            font-family: Georgia, serif;
+            font-size: 25px;
+        }
+
+        /* PHOTOS */
+
+        .photos-section {
+            background: #fff;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+            margin-top: 35px;
+        }
+
+        .photo-card {
+            aspect-ratio: 1/1;
+            border-radius: 25px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffd6e7, #e7c6ff);
+            box-shadow: 0 12px 30px rgba(100,50,100,0.12);
+            transition: 0.4s;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* SPECIAL NOTE */
+
+        .special-section {
+            background: linear-gradient(135deg, #fce4ec, #f3e5f5);
+        }
+
+        .special-box {
+            max-width: 800px;
+            padding: 50px 30px;
+            border-radius: 35px;
+            margin: auto;
+            background: rgba(255,255,255,0.75);
+            box-shadow: 0 20px 60px rgba(100,50,100,0.12);
+        }
+
+        .special-box .big-heart {
+            font-size: 65px;
+            margin-bottom: 20px;
+        }
+
+        .special-box p {
+            font-size: 20px;
+            line-height: 1.9;
+            color: #67485a;
+        }
+
+        /* FINAL */
+
+        .final-section {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at center, #ffd6e7, transparent 50%),
+                linear-gradient(135deg, #fff0f6, #ead7ff);
+        }
+
+        .gift {
+            font-size: 100px;
+            cursor: pointer;
+            animation: giftFloat 2s ease-in-out infinite;
+            margin: 20px;
+        }
+
+        .final-message {
+            display: none;
+            animation: appear 1s ease;
+        }
+
+        .final-message h2 {
+            font-family: Georgia, serif;
+            font-size: clamp(38px, 8vw, 70px);
+            color: #c2185b;
+            margin-bottom: 20px;
+        }
+
+        .final-message p {
+            font-size: 20px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 5000;
+            width: 55px;
+            height: 55px;
+            border: none;
+            border-radius: 50%;
+            background: #c2185b;
+            color: white;
+            font-size: 23px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(194,24,91,0.3);
+        }
+
+        /* CONFETTI */
+
+        .confetti {
+            position: fixed;
+            top: -20px;
+            z-index: 10000;
+            font-size: 25px;
+            animation: fall 4s linear forwards;
+            pointer-events: none;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes floating {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        @keyframes floatCard {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes giftFloat {
+            0%,100% {
+                transform: translateY(0) rotate(-3deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(3deg);
+            }
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .photo-card:last-child {
+                grid-column: span 2;
+                max-width: 50%;
+                width: 100%;
+                margin: auto;
+            }
+        }
+
+        @media (max-width: 500px) {
+            section {
+                padding: 60px 16px;
+            }
+
+            .letter {
+                padding: 30px 20px;
+                font-size: 16px;
+            }
+
+            .time-box {
+                width: 75px;
+            }
+
+            .time-box strong {
+                font-size: 27px;
+            }
+
+            .photo-grid {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     SECRET QUESTION
+========================= -->
+
+<div id="lockScreen">
+
+    <div class="lock-card">
+
+        <div class="heart">💗</div>
+
+        <h1>Hey Bestie...</h1>
+
+        <p>
+            I made something special for you.
+            But first, you need to answer one little question. 👀✨
+        </p>
+
+        <div class="question">
+            What do I call you? 💕
+        </div>
+
+        <input
+            type="text"
+            id="answer"
+            placeholder="Type your answer..."
+        >
+
+        <button class="open-btn" onclick="unlockWebsite()">
+            Open Your Surprise 🎁
+        </button>
+
+        <div id="wrongAnswer">
+            Hmm... that's not what I call you 😜
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MAIN WEBSITE
+========================= -->
+
+<div id="mainWebsite">
+
+    <!-- MUSIC -->
+
+    <audio id="birthdayMusic" loop>
+        <source src="music/birthday.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="music-btn" onclick="toggleMusic()" id="musicButton">
+        🎵
+    </button>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="floating-heart heart1">💗</div>
+        <div class="floating-heart heart2">💕</div>
+        <div class="floating-heart heart3">💖</div>
+
+        <div class="container">
+
+            <h2>A little surprise for my</h2>
+
+            <h1>Bestie</h1>
+
+            <p class="subtitle">
+                Because someone as special as you deserves
+                more than just a simple birthday wish. 🌸
+            </p>
+
+            <a href="#countdown" class="scroll-btn">
+                There's something for you ✨
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- COUNTDOWN -->
+
+    <section class="countdown-section" id="countdown">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Something Special Is Coming... 🎂
+            </h2>
+
+            <p class="section-text">
+                Counting down to the day the world became a little
+                brighter because <strong>Kanwal</strong> was born. 💗
+            </p>
+
+            <div class="countdown">
+
+                <div class="time-box">
+                    <strong id="days">00</strong>
+                    <span>Days</span>
+                </div>
+
+                <div class="time-box">
+                    <strong id="hours">00</strong>
+                    <span>Hours</span>
+                </div>
+
+                <div class="time-box">
+                    <strong id="minutes">00</strong>
+                    <span>Minutes</span>
+                </div>
+
+                <div class="time-box">
+                    <strong id="seconds">00</strong>
+                    <span>Seconds</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PERSONAL MESSAGE -->
+
+    <section class="message-section">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Dear Kanwal... 💌
+            </h2>
+
+            <div class="letter">
+
+                <p>
+                    Happy Birthday to one of the most special people
+                    in my life. ❤️
+                </p>
+
+                <p>
+                    I honestly don't know how to put everything into
+                    words, but today I just want you to know how
+                    grateful I am to have you as my bestie.
+                </p>
+
+                <p>
+                    Thank you for all the laughs, conversations,
+                    memories, random moments and everything in between.
+                    Some friendships become special without us even
+                    realizing when it happened.
+                </p>
+
+                <p>
+                    I hope this new chapter of your life brings you
+                    endless happiness, beautiful memories, success,
+                    peace and countless reasons to smile. ✨
+                </p>
+
+                <p>
+                    Always keep that beautiful smile and never forget
+                    how special you are. 🌸
+                </p>
+
+                <div class="signature">
+                    With lots of love & best wishes,<br>
+                    <strong>Huzaifa ❤️</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PHOTOS -->
+
+    <section class="photos-section">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Our Little Memories 📸
+            </h2>
+
+            <p class="section-text">
+                Five little memories, but a thousand feelings. 💕
+            </p>
+
+            <div class="photo-grid">
+
+                <div class="photo-card">
+                    <img src="images/photo1.jpg" alt="Memory 1">
+                </div>
+
+                <div class="photo-card">
+                    <img src="images/photo2.jpg" alt="Memory 2">
+                </div>
+
+                <div class="photo-card">
+                    <img src="images/photo3.jpg" alt="Memory 3">
+                </div>
+
+                <div class="photo-card">
+                    <img src="images/photo4.jpg" alt="Memory 4">
+                </div>
+
+                <div class="photo-card">
+                    <img src="images/photo5.jpg" alt="Memory 5">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SPECIAL NOTE -->
+
+    <section class="special-section">
+
+        <div class="container">
+
+            <div class="special-box">
+
+                <div class="big-heart">💗</div>
+
+                <h2 class="section-title">
+                    One More Thing...
+                </h2>
+
+                <p>
+                    Life gives us many people to meet,
+                    but only a few become truly special.
+                    I'm really glad that you're one of those
+                    people in my life, Kanwal.
+                    <br><br>
+                    Whatever happens, I hope you always have
+                    reasons to smile and people around you
+                    who genuinely care about you.
+                    <br><br>
+                    Keep shining, Bestie. ✨
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL SURPRISE -->
+
+    <section class="final-section">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                One Last Surprise 🎁
+            </h2>
+
+            <p class="section-text">
+                You've reached the end...
+                but there's one last thing waiting for you.
+            </p>
+
+            <div class="gift" onclick="openGift()">
+                🎁
+            </div>
+
+            <p>
+                <strong>Tap the gift 💕</strong>
+            </p>
+
+            <div class="final-message" id="finalMessage">
+
+                <h2>
+                    Happy Birthday, Kanwal! 🎂❤️
+                </h2>
+
+                <p>
+                    May your life always be filled with happiness,
+                    love, success, beautiful surprises and
+                    countless unforgettable moments.
+                    <br><br>
+                    Keep smiling, Bestie. 🌸
+                    <br><br>
+                    You deserve all the beautiful things life has
+                    to offer. ✨
+                    <br><br>
+                    <strong>
+                        Happy Birthday once again! 🎉💗
+                    </strong>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+    /* =========================
+       SECRET QUESTION
+    ========================= */
+
+    function unlockWebsite() {
+
+        const answer = document
+            .getElementById("answer")
+            .value
+            .trim()
+            .toLowerCase();
+
+        /*
+           The answer is "bestie".
+           You can change it later if you want.
+        */
+
+        if (answer === "bestie") {
+
+            document.getElementById("lockScreen").style.display = "none";
+            document.getElementById("mainWebsite").style.display = "block";
+
+            startMusic();
+
+            window.scrollTo(0, 0);
+
+        } else {
+
+            document.getElementById("wrongAnswer").style.display = "block";
+
+        }
+    }
+
+
+    /* =========================
+       COUNTDOWN
+    ========================= */
+
+    const birthdayDate =
+        new Date("2026-10-07T00:00:00+05:00").getTime();
+
+    function updateCountdown() {
+
+        const now = new Date().getTime();
+
+        const difference = birthdayDate - now;
+
+        if (difference <= 0) {
+
+            document.getElementById("days").innerText = "00";
+            document.getElementById("hours").innerText = "00";
+            document.getElementById("minutes").innerText = "00";
+            document.getElementById("seconds").innerText = "00";
+
+            return;
+        }
+
+        const days =
+            Math.floor(difference / (1000 * 60 * 60 * 24));
+
+        const hours =
+            Math.floor(
+                (difference % (1000 * 60 * 60 * 24))
+                / (1000 * 60 * 60)
+            );
+
+        const minutes =
+            Math.floor(
+                (difference % (1000 * 60 * 60))
+                / (1000 * 60)
+            );
+
+        const seconds =
+            Math.floor(
+                (difference % (1000 * 60))
+                / 1000
+            );
+
+        document.getElementById("days").innerText =
+            String(days).padStart(2, "0");
+
+        document.getElementById("hours").innerText =
+            String(hours).padStart(2, "0");
+
+        document.getElementById("minutes").innerText =
+            String(minutes).padStart(2, "0");
+
+        document.getElementById("seconds").innerText =
+            String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+
+    setInterval(updateCountdown, 1000);
+
+
+    /* =========================
+       MUSIC
+    ========================= */
+
+    const music =
+        document.getElementById("birthdayMusic");
+
+    function startMusic() {
+
+        music.volume = 0.35;
+
+        music.play().catch(() => {
+            console.log("Music requires user interaction.");
+        });
+    }
+
+    function toggleMusic() {
+
+        if (music.paused) {
+
+            music.play();
+
+            document.getElementById("musicButton")
+                .innerText = "🔊";
+
+        } else {
+
+            music.pause();
+
+            document.getElementById("musicButton")
+                .innerText = "🔇";
+        }
+    }
+
+
+    /* =========================
+       FINAL GIFT
+    ========================= */
+
+    function openGift() {
+
+        document.querySelector(".gift").style.display = "none";
+
+        document.getElementById("finalMessage")
+            .style.display = "block";
+
+        createConfetti();
+
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+        });
+    }
+
+
+    /* =========================
+       CONFETTI
+    ========================= */
+
+    function createConfetti() {
+
+        const symbols = [
+            "🎉",
+            "💗",
+            "💕",
+            "✨",
+            "🌸",
+            "🎀",
+            "❤️",
+            "🎊"
+        ];
+
+        for (let i = 0; i < 70; i++) {
+
+            const confetti =
+                document.createElement("div");
+
+            confetti.className = "confetti";
+
+            confetti.innerText =
+                symbols[Math.floor(Math.random() * symbols.length)];
+
+            confetti.style.left =
+                Math.random() * 100 + "vw";
+
+            confetti.style.animationDuration =
+                (Math.random() * 2 + 3) + "s";
+
+            confetti.style.fontSize =
+                (Math.random() * 15 + 15) + "px";
+
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+    }
+
+</script>
+
+</body>
+</html>
